@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Книжной пост</title>
+</head>
+<body>
+  <ol>
+      {% for i in book_list %}
+      <li>
+        <p>{{ i.title }}</p>
+        <p>{{ i.created_at }}</p>
+          <a href="/books/{{ i.id }}/">Читать подробнее</a>
+      </li>
+      {%  endfor  %}
+  </ol>
+
+</body>
+</html>

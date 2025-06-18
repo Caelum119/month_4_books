@@ -12,7 +12,10 @@
     <p>{{ book_id.created_at }}</p>
     <img src="{{ book_id.image.url }}" alt="" width="200" height="200">
 
-  
+    {% if book_id.audio_link %}
+    <h3>🎧 Аудиокнига:</h3>
+    <iframe width="560" height="315" src="{{ book_id.audio_link }}" frameborder="0" allowfullscreen></iframe>
+    {% endif %}
 
 </body>
 </html>

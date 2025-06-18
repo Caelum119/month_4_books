@@ -13,6 +13,8 @@ class Book(models.Model):
   type_book = models.CharField(max_length=100, choices=TYPE_BOOK)
   created_at = models.DateTimeField(auto_now_add=True)
 
+  audio_link = models.URLField(verbose_name='Embed-ссылка на аудиокнигу', null=True, blank=True)
+
 
   def __str__(self):
     return self.title

@@ -3,23 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detailed book post</title>
+  <title>{{ book.title }}</title>
 </head>
 <body>
-    <h1>{{ book_id.title }}</h1>
-    <p>{{ book_id.description }}</p>
-    <p>{{ book_id.type_book }}</p>
-    <p>{{ book_id.created_at }}</p>
-    <img src="{{ book_id.image.url }}" alt="" width="200" height="200">
+  <h1>{{ book.title }}</h1>
+  <p>{{ book.description }}</p>
+  <p>Жанр: {{ book.type_book }}</p>
+  <p>Дата добавления: {{ book.created_at }}</p>
+  <img src="{{ book.image.url }}" alt="Картинка книги" width="200" height="200">
 
-    {% if book_id.audio_link %}
+  {% if book.audio_link %}
     <h3>🎧 Аудиокнига:</h3>
-    <iframe width="560" height="315" src="{{ book_id.audio_link }}" frameborder="0" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="{{ book.audio_link }}" frameborder="0" allowfullscreen></iframe>
+  {% endif %}
+
+  <hr>
+  <h2>Средняя оценка: 
+    {% if avg_rating %}
+      {{ avg_rating }} / 5
+    {% else %}
+      пока нет оценок
     {% endif %}
+  </h2>
+
+  <h3>Отзывы:</h3>
+  {% for review in reviews %}
+    <div style="border: 1px solid #ccc; padding: 10px; margin: 10px 0;">
+      <strong>{{ review.author.username }}</strong> — Оценка: {{ review.mark }}/5 <br>
+      {{ review.text }} <br>
+      <small>Оставлен: {{ review.created_at|date:"d.m.Y H:i" }}</small>
+    </div>
+  {% empty %}
+    <p>Пока нет отзывов</p>
+  {% endfor %}
+
+ 
 
 </body>
 </html>
-
-
-
-
